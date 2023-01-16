@@ -1,5 +1,10 @@
 from django.db import models
 
+class Homeless(models.Model):
+    bio = models.TextField()
+    quantity = models.IntegerField()
+    donated = models.IntegerField(default=0)
+    created_at = models.DateField(auto_now=True)
 
 class Pets(models.Model):
     name = models.CharField(max_length=50)
