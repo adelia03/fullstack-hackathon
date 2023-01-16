@@ -6,5 +6,6 @@ admin.site.register(Children)
 admin.site.register(Pets)
 admin.site.register(Narsing_House)
 admin.site.register(Children_House)
+admin.site.register(Homeless)
 
 
