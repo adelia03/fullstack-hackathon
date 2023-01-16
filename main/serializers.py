@@ -2,35 +2,35 @@ from rest_framework import serializers
 
 from .models import *
 
-class Homeless_Serializers(serializers):
+class Homeless_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = Homeless
-        filds = '__all__'
+        fields = '__all__'
 
-class Pets_Serilaizers(serializers):
+class Pets_Serilaizers(serializers.ModelSerializer):
 
     class Meta:
         model = Pets
-        filds = '__all__'
+        fields = '__all__'
 
-class Narsing_House_Serializers(serializers):
+class Narsing_House_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = Narsing_House
-        filds = '__all__'
+        fields = '__all__'
 
-class Children_Hous_Serializer(serializers):
+class Children_Hous_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Children_House
-        filds = '__all__'
+        fields = '__all__'
 
-class Children_Serializers(serializers):
+class Children_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = Children
-        filds = '__all__'
+        fields = '__all__'
         
-        
+
 
