@@ -22,7 +22,7 @@ from drf_yasg.views import get_schema_view
 
 swagger_view = get_schema_view(
     openapi.Info(
-        title="Kinopoisk",
+        title="Fullstack",
         default_version="v1",
         description="hackaton",
     ),
