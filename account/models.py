@@ -36,7 +36,7 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=70)
     phone = models.CharField(max_length=13)
-    is_applicant = models.BooleanField(default=False)
+    balance = models.IntegerField(default=500)
     is_active = models.BooleanField(default=False)
     activation_code = models.CharField(max_length=8, null=True)
 
