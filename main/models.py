@@ -51,7 +51,7 @@ class Children(models.Model):
     bio=models.TextField()
     sum=models.IntegerField()
     donated=models.IntegerField(default=0)
-    ostatok=models.IntegerField()
+    ostatok=models.IntegerField(null=True)
     create=models.DateField(auto_now=True)
 
     def __str__(self):
