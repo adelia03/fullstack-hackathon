@@ -8,3 +8,5 @@ def send_activation_code(email, activation_code):
     message = f'Активируйте аккаунт, перейдя по ссылке\n{activation_link}'
     send_mail('Activate account', message, 'aanastasiyatuz@gmail.com', [email])
     return "Отправленно"
+
+
