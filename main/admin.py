@@ -2,10 +2,26 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Children)
-admin.site.register(Pets)
-admin.site.register(Narsing_House)
-admin.site.register(Children_House)
-admin.site.register(Homeless)
+class HomelessAdmin(admin.ModelAdmin):
+    list_filter = ['created_at']
+
+class PetsAdmin(admin.ModelAdmin):
+    list_filter = ['create']  
+
+class ChildrenAdmin(admin.ModelAdmin):
+    list_filter = ['create']
+
+class Children_HouseAdmin(admin.ModelAdmin):
+    list_filter = ['create']  
+
+class Narsing_HouseAdmin(admin.ModelAdmin):
+    list_filter = ['create']            
+
+admin.site.register(Children, ChildrenAdmin)
+admin.site.register(Pets,PetsAdmin)
+admin.site.register(Narsing_House,Narsing_HouseAdmin)
+admin.site.register(Children_House,Children_HouseAdmin)
+admin.site.register(Homeless,HomelessAdmin)
+
 
 
