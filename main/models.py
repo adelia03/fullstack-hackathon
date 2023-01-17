@@ -16,7 +16,10 @@ class Pets(models.Model):
 
     def __str__(self):
         return f'{self.name}'
-    
+
+    class Meta:
+        verbose_name = 'Pet'
+        verbose_name_plural = 'Pets'
 
 class Narsing_House(models.Model):
     name = models.CharField(max_length=50)
