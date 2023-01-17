@@ -4,7 +4,6 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
-
 from .models import User
 from .serializers import RegisterSerializer, CreateNewPasswordSerializer
 
@@ -55,6 +54,7 @@ class ForgotPassword(APIView):
 
 
 class ForgotPasswordComplete(APIView):
+    @swagger_auto_schema(request_body=CreateNewPasswordSerializer())
     def post(self, request, activation_code):
         user = get_object_or_404(User, activation_code=activation_code)
         user.activation_code = ''
