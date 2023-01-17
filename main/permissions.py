@@ -13,3 +13,5 @@ class IsAuthorOrReadOnly(BasePermission):
             return True
         if not request.user.is_authenticated:
             return False
+        if request.user == obj.user:
+            return True
