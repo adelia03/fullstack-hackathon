@@ -35,7 +35,10 @@ class Children_Serializers(serializers.ModelSerializer):
         model = Children
         exclude= ('ostatok',)
 
+        
 
-  
+
+
+
 
 
