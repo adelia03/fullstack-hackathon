@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from .models import User
+from review.serializers import *
 
 class RegisterSerializer(serializers.ModelSerializer):
     password_confirm = serializers.CharField(min_length=4, required=True)
@@ -65,3 +66,23 @@ class CreateNewPasswordSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('email',)
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['favourite'] = FavouriteChildSerializer(instance.favourites.all(), many=True).data
+        rep['favourite_pet'] = FavouritePetSerializer(instance.favourites_pet.all(), many=True).data
+        rep['favourite_hom'] = FavouriteHomSerializer(instance.favourites_hom.all(), many=True).data
+        rep['favourite_childh'] = FavouriteChildHSerializer(instance.favourites_childh.all(), many=True).data
+        rep['favourite_nrs'] = FavouriteNrshHSerializer(instance.favourites_nrh.all(), many=True).data
+        
+        
+
+
+        return rep
+

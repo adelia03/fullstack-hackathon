@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from .models import User
-from .serializers import RegisterSerializer, CreateNewPasswordSerializer
+from .serializers import RegisterSerializer, CreateNewPasswordSerializer, UserSerializer
 
 
 class RegisterUserView(APIView):
@@ -64,3 +64,10 @@ class ForgotPasswordComplete(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response('Вы успешно восстановили пароль', status=200)
+
+
+
+@api_view(['GET'])
+def user_detail(request, id):
+    user = get_object_or_404(User, id=id)
+    return Response(UserSerializer(user).data, status=200)
