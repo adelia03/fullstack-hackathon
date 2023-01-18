@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from .models import *
 
+
+
 class Homeless_Serializers(serializers.ModelSerializer):
 
     class Meta:
@@ -29,11 +31,18 @@ class Children_Hous_Serializer(serializers.ModelSerializer):
         model = Children_House
         fields= '__all__'
 
+
+    # def to_representation(self, instance, ):
+
+    #     return super().to_representation(instance)
+
 class Children_Serializers(serializers.ModelSerializer):
 
     class Meta:
         model = Children
         exclude= ('ostatok',)
+
+    
 
         
 
