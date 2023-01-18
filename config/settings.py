@@ -204,3 +204,14 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'https://www.thunderclient.com',
 ]
+
+
+
+import os
+
+CACHES = {
+    'default': {
+        'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'fullstack_cache'),
+    }
+}

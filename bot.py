@@ -1,4 +1,5 @@
 import telebot
+import sqlite3
 from decouple import config 
 
 token = config("TOKEN")
@@ -15,6 +16,16 @@ keyborard.add(button1,button2,button3,button4,button5)
 
 @bot.message_handler(commands=["start"])
 def start_message(message):
+    connect = sqlite3.connect("user.db")
+    cursor = connect.cursor()
+    cursor.execute(""" CREATE TABLE IF NOT EXITSTS login_id(
+        id INTEGER,
+    )""")
+    connect.commit()
+
+    peple_id = message.chat.id
+    cursor.execute(f"SELECT id FROM login_id WHERE ID = {people_id}")
+
     bot.send_message(message.chat.id, 'Привет, выбери кнопку', reply_markup=keyborard)
     bot.send_photo(message.chat.id, "")
     bot.register_next_step_handler(message,reply_to_button)
