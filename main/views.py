@@ -1,7 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAdminUser
-from .filters import *
+from rest_framework.decorators import action
 
+from account.models import User
+from .filters import *
 from .models import *
 from .serializers import *
 
@@ -50,16 +52,19 @@ class HomelessViewSet(ModelViewSet):
 
 class Children_House_ViewSet(ModelViewSet):
     queryset = Children_House.objects.all()
-    filterset_class = Children_Filter
+    filterset_class = Children_House_Filter
     serializer_class =Children_Hous_Serializer
     def get_permissions(self):
         if self.action in ['retrieve', 'list', 'search']:
             # если это запрос на листинг или детализацию
             return [] # разрешаем всем
         return [IsAdminUser()]
-
-
-
-
-
+    
+#     @action(detail=False, methods=['patch'])
+#     def donate(self, request, pk=None):
+#         user:User = request.user
+#         res = request.data.get('donated')
+#         if user.balance >= res:
+#             queryset = Children_House.objects.get('donated')
+#             ser = 
 
