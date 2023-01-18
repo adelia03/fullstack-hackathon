@@ -7,7 +7,10 @@ from rest_framework.decorators import action
 from drf_yasg import openapi
 
 from .filters import *
+from rest_framework.decorators import action
 
+from account.models import User
+from .filters import *
 from .models import *
 from .serializers import *
 
@@ -152,5 +155,18 @@ class Children_House_ViewSet(ModelViewSet):
         return Response(serializer.data, status=200)
 
     
+    def get_permissions(self):
+        if self.action in ['retrieve', 'list', 'search']:
+            # если это запрос на листинг или детализацию
+            return [] # разрешаем всем
+        return [IsAdminUser()]
+    
+#     @action(detail=False, methods=['patch'])
+#     def donate(self, request, pk=None):
+#         user:User = request.user
+#         res = request.data.get('donated')
+#         if user.balance >= res:
+#             queryset = Children_House.objects.get('donated')
+#             ser = 
 
  
