@@ -10,3 +10,5 @@ gunicorn
 django-cors-headers
 celery
 redis
+pytelegrambotapi
+bs4
