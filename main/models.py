@@ -41,6 +41,7 @@ class Children_House(models.Model):
     quantity=models.IntegerField()
     donated=models.IntegerField(default=0)
     create=models.DateField(auto_now=True)
+    
 
     def __str__(self):
         return f'{self.name}'
