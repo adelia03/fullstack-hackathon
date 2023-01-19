@@ -8,8 +8,6 @@ from .serializers import *
 from main.permissions import IsAuthorOrReadOnly
 
 
-
-
 class CreateFavouriteChildApiView(APIView):
     permission_classes=[IsAuthorOrReadOnly]
     @swagger_auto_schema(request_body=FavouriteChildSerializer())
