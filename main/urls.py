@@ -12,4 +12,10 @@ router.register('homeless', HomelessViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('donate-children/', ChildrenDonate.as_view()),
+    path('donate-children-house/', ChildrenHouseDonate.as_view()),
+    path('donate-pets/', PetsDonate.as_view()),
+    path('donate-homeless/', HomelessDonate.as_view()),
+    path('donate-narsing-house/', NarsingHouseDonate.as_view()),
+
 ]

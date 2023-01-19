@@ -65,3 +65,14 @@ class CreateNewPasswordSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class BalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('balance',)
+
+    def validate_balance(self, balance):
+        if balance < 0:
+            raise serializers.ValidationError("The number should be positive")
+        return balance
