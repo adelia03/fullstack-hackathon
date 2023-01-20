@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
 from .models import User
+from review.serializers import *
 
 class RegisterSerializer(serializers.ModelSerializer):
     password_confirm = serializers.CharField(min_length=4, required=True)
-
     class Meta: 
         model = User
         fields = ('email', 'password', 'password_confirm', 'first_name', 'last_name', 'phone',)
@@ -29,12 +29,12 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
+
 class CreateNewPasswordSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=150, required=True)
     activation_code = serializers.CharField(max_length=8, min_length=8, required=True)
     password = serializers.CharField(min_length=8, required=True)
     password_confirm = serializers.CharField(min_length=8, required=True)
-
     class Meta:
         model = User
         fields = ('email', 'password', 'password_confirm', 'activation_code')
@@ -61,7 +61,6 @@ class CreateNewPasswordSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Пользователь не найден')
         except User.DoesNotExist:
             raise serializers.ValidationError('Пользователь не найден')
-
         user.set_password(password)
         user.save()
         return user
@@ -76,3 +75,19 @@ class BalanceSerializer(serializers.ModelSerializer):
         if balance < 0:
             raise serializers.ValidationError("The number should be positive")
         return balance
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('email',)
+
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        rep['favourites_children'] = FavouriteChildrenSerializer(instance.favourites.all(), many=True).data
+        rep['favourites_pets'] = FavouritePetsSerializer(instance.favourites_pet.all(), many=True).data
+        rep['favourites_homeless'] = FavouriteHomelessSerializer(instance.favourites_hom.all(), many=True).data
+        rep['favourites_children_house'] = FavouriteChildrenHouseSerializer(instance.favourites_childh.all(), many=True).data
+        rep['favourites_narsing_house'] = FavouriteNarsingHouseSerializer(instance.favourites_nrh.all(), many=True).data
+        return rep
+

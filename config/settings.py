@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # my apps
     'account',
     'main',
+    'review',
+
 
 
 ]
@@ -202,3 +204,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3001',
     'https://www.thunderclient.com',
 ]
+
+
+

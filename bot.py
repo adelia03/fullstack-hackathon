@@ -1,7 +1,7 @@
 import telebot
 from decouple import config 
 
-token = config("TOKEN")
+token = config('TOKEN')
 
 bot = telebot.TeleBot(token)
 
@@ -21,10 +21,16 @@ def start_message(message):
 
 @bot.message_handler(func=lambda x:True)
 def reply_to_button(message):
-    if message.text  == 'link':
-        bot.send_message(message.chat.id, '')
-    elif message.text == 'transition':
-        bot.send_message(message.chat.id, '')
+    if message.text  == 'Дети':
+        bot.send_message(message.chat.id,'http://34.170.17.83/admin/main/children/')
+    elif message.text == 'Детский дом':
+        bot.send_message(message.chat.id, 'http://34.170.17.83/admin/main/children_house/')
+    elif message.text == 'Бездомнные':
+        bot.send_message(message.chat.id, 'http://34.170.17.83/admin/main/homeless/')
+    elif message.text == 'Животные':
+        bot.send_message(message.chat.id, 'http://34.170.17.83/admin/main/pets/')
+    elif message.text == 'Дом престарелых':
+        bot.send_message(message.chat.id, 'http://34.170.17.83/admin/main/narsing_house/')        
     else:
         bot.send_message(message.id,"Click on the button")
         bot.register_next_step_handler(message,reply_to_button)

@@ -2,34 +2,35 @@ from rest_framework import serializers
 
 from .models import *
 
+
 class Homeless_Serializers(serializers.ModelSerializer):
     class Meta:
         model = Homeless
-        fields= '__all__'
+        fields = '__all__'
 
 
 class Pets_Serilaizers(serializers.ModelSerializer):
     class Meta:
         model = Pets
-        fields= '__all__'
+        fields = '__all__'
 
 
 class Narsing_House_Serializers(serializers.ModelSerializer):
     class Meta:
         model = NarsingHouse
-        fields= '__all__'
+        fields = '__all__'
 
 
 class Children_House_Serializer(serializers.ModelSerializer):
     class Meta:
         model = ChildrenHouse
-        fields= '__all__'
+        fields = '__all__'
 
 
 class Children_Serializers(serializers.ModelSerializer):
     class Meta:
         model = Children
-        exclude= ('ostatok',)
+        fields = '__all__'
 
 
 class DonatedChildrenSerializer(serializers.ModelSerializer):
@@ -85,3 +86,15 @@ class DonatedNarsingHouseSerializer(serializers.ModelSerializer):
         if donated < 0:
             raise serializers.ValidationError("The number should be positive")
         return donated
+
+
+class Volunteer_Serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Volunteer 
+        fields = '__all__'
+
+
+class Partner_Serializers(serializers.ModelSerializer):
+    class Meta:
+        model = Partner
+        fields = '__all__'               
