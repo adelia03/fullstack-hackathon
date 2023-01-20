@@ -42,6 +42,18 @@ class Children_Serializers(serializers.ModelSerializer):
         model = Children
         exclude= ('ostatok',)
 
+class Volunteer_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Volunteer 
+        fields = '__all__'
+
+class Partner_Serializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Partner
+        fields = '__all__'               
+
     
 
         
