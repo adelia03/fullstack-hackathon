@@ -43,6 +43,34 @@ class ChildrenViewSet(ModelViewSet):
         return Response(serializer.data, status=200)
 
 
+class Children_House_ViewSet(ModelViewSet):
+    queryset = Children_House.objects.all()
+    filterset_class = Children_House_Filter
+    serializer_class =Children_Hous_Serializer
+    def get_permissions(self):
+        if self.action in ['retrieve','list','search']:
+            return[]
+        return[IsAdminUser()]    
+
+    @swagger_auto_schema(manual_parameters=[
+    openapi.Parameter('q', openapi.IN_QUERY, type=openapi.TYPE_STRING)
+    ])
+    @action(['GET'], detail=False)
+    def search(self, request):
+        q = request.query_params.get('q')
+        queryset = self.get_queryset() 
+        if q:
+            queryset = queryset.filter(Q(title__icontains=q) )
+        pagination = self.paginate_queryset(queryset)
+        if pagination:
+            serializer = self.get_serializer(pagination, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=200)    
+
+
+
 class PetsViewSet(ModelViewSet):
     queryset = Pets.objects.all()
     filterset_class = Pets_Filter
@@ -129,12 +157,41 @@ class HomelessViewSet(ModelViewSet):
         return Response(serializer.data, status=200)
 
 
+class Volunteer_VieSet(ModelViewSet):
+    queryset = Volunteer.objects.all()
+    filter_class = Volunteer_Filter
+    serializer_class = Volunteer_Serializers
+    def get_permissions(self):
+        if self.action in ['retrieve', 'list', 'search']:
+            return[]
+        return[IsAdminUser()]
 
-class Children_House_ViewSet(ModelViewSet):
-    queryset = Children_House.objects.all()
-    filterset_class = Children_House_Filter
-    serializer_class =Children_Hous_Serializer
+    @swagger_auto_schema(manual_parameters=[
+    openapi.Parameter('q', openapi.IN_QUERY, type=openapi.TYPE_STRING)
+    ])
+    @action(['GET'], detail=False)
+    def search(self, request):
+        q = request.query_params.get('q')
+        queryset = self.get_queryset() 
+        if q:
+            queryset = queryset.filter(Q(first_name__icontains=q) | Q(last_name__icontains=q)) 
+        pagination = self.paginate_queryset(queryset)
+        if pagination:
+            serializer = self.get_serializer(pagination, many=True)
+            return self.get_paginated_response(serializer.data)
 
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=200)    
+
+
+class Partner_Vieset(ModelViewSet):
+    queryset = Partner.objects.all()
+    filter_class = Partner_Filter
+    serializer_class = Partner_Serializers
+    def get_permissions(self):
+        if self.action in ['retieve', 'list', 'search']:
+            return[]
+        return[IsAdminUser()]    
 
 
     @swagger_auto_schema(manual_parameters=[
@@ -145,7 +202,7 @@ class Children_House_ViewSet(ModelViewSet):
         q = request.query_params.get('q')
         queryset = self.get_queryset() 
         if q:
-            queryset = queryset.filter(Q(name__icontains=q) | Q(bio__icontains=q))
+            queryset = queryset.filter(Q(title__icontains=q)) 
         pagination = self.paginate_queryset(queryset)
         if pagination:
             serializer = self.get_serializer(pagination, many=True)

@@ -41,6 +41,7 @@ class Children_House(models.Model):
     quantity=models.IntegerField()
     donated=models.IntegerField(default=0)
     create=models.DateField(auto_now=True)
+    
 
     def __str__(self):
         return f'{self.name}'
@@ -61,7 +62,22 @@ class Children(models.Model):
         return f'{self.first_name}'
     
 
+class Volunteer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name=models.CharField(max_length=50)
+    image=models.ImageField(upload_to='image', null=True)
+    questionnaire=models.TextField()
 
-    
+    def __str__(self):
+        return f'{self.first_name}'
+
+class Partner(models.Model):
+    title = models.CharField(max_length=30)
+    about = models.TextField(max_length=500)
+    address = models.TextField(max_length=50)
+    contacts = models.CharField(max_length=15)
+
+    def __str__(self):
+        return f'{self.title}'
 
 
