@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import RegisterSerializer, CreateNewPasswordSerializer, UserSerializer
+from .serializers import RegisterSerializer, CreateNewPasswordSerializer, UserSerializer, BalanceSerializer
 
 
 class RegisterUserView(APIView):
@@ -70,3 +70,14 @@ class ForgotPasswordComplete(APIView):
 def user_detail(request, id):
     user = get_object_or_404(User, id=id)
     return Response(UserSerializer(user).data, status=200)
+
+class BalanceView(APIView):
+    @swagger_auto_schema(request_body=BalanceSerializer())
+    def patch(self, request):
+        user:User = request.user
+        balance = request.data.get("balance")
+        queryset = BalanceSerializer(data=request.data, context={'request':request})
+        queryset.is_valid(raise_exception=True)
+        user_balance = user.balance + int(balance)
+        User.objects.filter(email=user.email).update(balance=user_balance)
+        return Response('Вы успешно пополнили баланс!', status=200)
