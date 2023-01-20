@@ -83,7 +83,7 @@ class ChildrenDonate(APIView):
             Children.objects.filter(id=child_id).update(donated=donated_all)
             return Response(status=201)  
         else:
-            return Response("YOu don't have money",status=403) 
+            return Response("You don't have enough money", status=401) 
     
     # @action(detail=False, methods=['patch'])
     # def donate(self, request, pk=None):
@@ -123,7 +123,7 @@ class ChildrenHouseDonate(APIView):
             ChildrenHouse.objects.filter(id=childrenhouse_id).update(donated=donated_all)
             return Response(status=201)  
         else:
-            return Response("YOu don't have money",status=403) 
+            return Response("You don't have enough money", status=401) 
 
 
 class HomelessDonate(APIView):
@@ -143,7 +143,7 @@ class HomelessDonate(APIView):
             Homeless.objects.filter(id=homeless_id).update(donated=donated_all)
             return Response(status=201)  
         else:
-            return Response("YOu don't have money",status=403) 
+            return Response("You don't have enough money", status=401) 
 
 
 class PetsDonate(APIView):
@@ -163,7 +163,7 @@ class PetsDonate(APIView):
             Pets.objects.filter(id=pets_id).update(donated=donated_all)
             return Response(status=201)  
         else:
-            return Response("YOu don't have money",status=403) 
+            return Response("You don't have enough money", status=401) 
 
 
 class NarsingHouseDonate(APIView):
@@ -183,4 +183,4 @@ class NarsingHouseDonate(APIView):
             NarsingHouse.objects.filter(id=narsinghouse_id).update(donated=donated_all)
             return Response(status=201)  
         else:
-            return Response("YOu don't have money",status=403) 
+            return Response("You don't have enough money", status=401) 
