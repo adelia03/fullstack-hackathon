@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from drf_yasg.utils import swagger_auto_schema
+
 from .models import User
 from .serializers import RegisterSerializer, CreateNewPasswordSerializer, UserSerializer
 
@@ -27,7 +28,6 @@ class DeleteUserView(APIView):
         user.delete()
         return Response(status=204)
 
-
 @api_view(['GET'])
 def activate_view(request, activation_code):
     user = get_object_or_404(User, activation_code=activation_code)
@@ -35,6 +35,7 @@ def activate_view(request, activation_code):
     user.activation_code = '' # delete the activated code
     user.save()
     return Response('Successfuly activated the account', 200)
+
 
 def send_activation_code(email, activation_code):
     activation_url = f'http://34.170.17.83/account/forgot-password-complete/{activation_code}/'
@@ -64,8 +65,6 @@ class ForgotPasswordComplete(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response('Вы успешно восстановили пароль', status=200)
-
-
 
 @api_view(['GET'])
 def user_detail(request, id):

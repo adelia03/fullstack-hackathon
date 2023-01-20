@@ -1,55 +1,12 @@
-from .models import *
 from rest_framework.serializers import ModelSerializer
 
+from .models import *
 
-class FavouriteChildSerializer(ModelSerializer):
+
+class FavouriteChildrenSerializer(ModelSerializer):
     class Meta:
-        model=FavouriteChild
-        exclude=('author',)
-
-
-    def validate(self, attrs):
-        attrs = super().validate(attrs)
-        request = self.context.get('request')
-        attrs['author'] = request.user
-        return attrs
-    
-    
-
-
-class FavouritePetSerializer(ModelSerializer):
-    class Meta:
-        model=FavouritePet
-        exclude=('author',)
-
-
-    def validate(self, attrs):
-        attrs = super().validate(attrs)
-        request = self.context.get('request')
-        attrs['author'] = request.user
-        return attrs
-    
-    
-
-class FavouriteHomSerializer(ModelSerializer):
-    class Meta:
-        model=FavouriteHom
-        exclude=('author',)
-
-
-    def validate(self, attrs):
-        attrs = super().validate(attrs)
-        request = self.context.get('request')
-        attrs['author'] = request.user
-        return attrs
-
-
-
-class FavouriteChildHSerializer(ModelSerializer):
-    class Meta:
-        model=FavouriteChildH
-        exclude=('author',)
-
+        model = FavouriteChildren
+        exclude = ('author',)
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
@@ -58,12 +15,10 @@ class FavouriteChildHSerializer(ModelSerializer):
         return attrs
     
 
-
-class FavouriteNrshHSerializer(ModelSerializer):
+class FavouritePetsSerializer(ModelSerializer):
     class Meta:
-        model=FavouriteNrsh
-        exclude=('author',)
-
+        model = FavouritePets
+        exclude = ('author',)
 
     def validate(self, attrs):
         attrs = super().validate(attrs)
@@ -71,3 +26,38 @@ class FavouriteNrshHSerializer(ModelSerializer):
         attrs['author'] = request.user
         return attrs
     
+    
+class FavouriteHomelessSerializer(ModelSerializer):
+    class Meta:
+        model = FavouriteHomeless
+        exclude = ('author',)
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        request = self.context.get('request')
+        attrs['author'] = request.user
+        return attrs
+
+
+class FavouriteChildrenHouseSerializer(ModelSerializer):
+    class Meta:
+        model = FavouriteChildrenHouse
+        exclude = ('author',)
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        request = self.context.get('request')
+        attrs['author'] = request.user
+        return attrs
+    
+
+class FavouriteNarsingHouseSerializer(ModelSerializer):
+    class Meta:
+        model = FavouriteNarsingHouse
+        exclude = ('author',)
+
+    def validate(self, attrs):
+        attrs = super().validate(attrs)
+        request = self.context.get('request')
+        attrs['author'] = request.user
+        return attrs

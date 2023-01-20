@@ -6,22 +6,27 @@ class HomelessAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
 
 class PetsAdmin(admin.ModelAdmin):
-    list_filter = ['create']  
+    list_filter = ['created_at']  
 
 class ChildrenAdmin(admin.ModelAdmin):
-    list_filter = ['create']
+    list_filter = ['created_at']
 
-class Children_HouseAdmin(admin.ModelAdmin):
-    list_filter = ['create']  
+class ChildrenHouseAdmin(admin.ModelAdmin):
+    list_filter = ['created_at']  
 
-class Narsing_HouseAdmin(admin.ModelAdmin):
-    list_filter = ['create']            
+class NarsingHouseAdmin(admin.ModelAdmin):
+    list_filter = ['created_at']  
+
+class VolunteerAdmin(admin.ModelAdmin):
+    list_filter = ['first_name', 'last_name']
+
+class PartnerAdmin(admin.ModelAdmin):
+    list_filter = ['title']          
 
 admin.site.register(Children, ChildrenAdmin)
-admin.site.register(Pets,PetsAdmin)
-admin.site.register(Narsing_House,Narsing_HouseAdmin)
-admin.site.register(Children_House,Children_HouseAdmin)
-admin.site.register(Homeless,HomelessAdmin)
-
-
-
+admin.site.register(ChildrenHouse, ChildrenHouseAdmin)
+admin.site.register(Pets, PetsAdmin)
+admin.site.register(NarsingHouse, NarsingHouseAdmin)
+admin.site.register(Homeless, HomelessAdmin)
+admin.site.register(Volunteer,VolunteerAdmin)
+admin.site.register(Partner, PartnerAdmin)
