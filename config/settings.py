@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
-    'cachalot',
 
     # my apps
     'account',
@@ -207,11 +206,3 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-CACHES= {
-    'default': {
-        'BACKEND': "django_redis.cache.RedisCache",
-        'LOCATION' : "redis://localhost:6379/1",
-    }
-}
-
-PRICE_CACHE_NAME = 'price_cache'
