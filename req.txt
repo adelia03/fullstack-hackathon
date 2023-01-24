@@ -13,4 +13,4 @@ redis
 pytelegrambotapi
 bs4
 django-cachalot
-django-redis
+django-redisdrf-api-logger
