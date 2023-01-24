@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    'cachalot',
 
     # my apps
     'account',
@@ -206,3 +207,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
+CACHES = {
+    'default': {
+        'BACKEND': "django_redis.cache.RedisCache",
+        'LOCATION' : 'redis://127.0.0.1:6379/1',
+    }
+}
