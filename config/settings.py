@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'account',
     'main',
     'review',
+    'drf_api_logger',
+
 
 
 
@@ -64,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'drf_api_logger.middleware.api_logger_middleware.APILoggerMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -190,6 +193,8 @@ EMAIL_USE_TLS = True
 ACTIVATE_USERS_EMAIL = True
 """"""
 
+
+DRF_API_LOGGER_DATABASE = True 
 
 """CELERY"""
 CELERY_BROKER_URL = "redis://localhost:6379"

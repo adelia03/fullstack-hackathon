@@ -12,3 +12,4 @@ celery
 redis
 pytelegrambotapi
 bs4
+drf-api-logger
