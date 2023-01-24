@@ -84,10 +84,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
-        rep['favourites_children'] = FavouriteChildrenSerializer(instance.favourites.all(), many=True).data
-        rep['favourites_pets'] = FavouritePetsSerializer(instance.favourites_pet.all(), many=True).data
-        rep['favourites_homeless'] = FavouriteHomelessSerializer(instance.favourites_hom.all(), many=True).data
-        rep['favourites_children_house'] = FavouriteChildrenHouseSerializer(instance.favourites_childh.all(), many=True).data
-        rep['favourites_narsing_house'] = FavouriteNarsingHouseSerializer(instance.favourites_nrh.all(), many=True).data
+        rep['favourites_children'] = FavouriteChildrenSerializer(instance.favourites_children.all(), many=True).data
+        rep['favourites_pets'] = FavouritePetsSerializer(instance.favourites_pets.all(), many=True).data
+        rep['favourites_homeless'] = FavouriteHomelessSerializer(instance.favourites_homeless.all(), many=True).data
+        rep['favourites_children_house'] = FavouriteChildrenHouseSerializer(instance.favourites_children_house.all(), many=True).data
+        rep['favourites_narsing_house'] = FavouriteNarsingHouseSerializer(instance.favourites_narsing_house.all(), many=True).data
         return rep
 
