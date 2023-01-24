@@ -10,8 +10,8 @@ router.register('pets', PetsViewSet)
 router.register('narsing_house', Narsing_House_ViewSet)
 router.register('children_house', Children_House_ViewSet)
 router.register('homeless', HomelessViewSet)
-router.register('Volunteer', Volunteer_VieSet)
-router.register('Partner', Partner_Vieset)
+router.register('volunteer', Volunteer_VieSet)
+router.register('partner', Partner_Vieset)
 
 urlpatterns = [
     path('', include(router.urls)),
