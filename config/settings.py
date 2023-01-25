@@ -219,3 +219,4 @@ CORS_ALLOWED_ORIGINS = [
 #         'LOCATION' : 'redis://localhost:6379/1',
 #     }
 # }
+
