@@ -59,7 +59,7 @@ class Children_House_ViewSet(ModelViewSet):
         q = request.query_params.get('q')
         queryset = self.get_queryset() 
         if q:
-            queryset = queryset.filter(Q(title__icontains=q) )
+            queryset = queryset.filter(Q(name__icontains=q) )
         pagination = self.paginate_queryset(queryset)
         if pagination:
             serializer = self.get_serializer(pagination, many=True)
@@ -148,6 +148,10 @@ class HomelessViewSet(ModelViewSet):
         if pagination:
             serializer = self.get_serializer(pagination, many=True)
             return self.get_paginated_response(serializer.data)
+            
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=200)
+
 
 
 class Volunteer_VieSet(ModelViewSet):
