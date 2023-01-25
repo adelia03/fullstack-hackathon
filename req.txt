@@ -12,4 +12,6 @@ celery
 redis
 pytelegrambotapi
 bs4
+django-cachalot
+django-redis
 drf-api-logger
