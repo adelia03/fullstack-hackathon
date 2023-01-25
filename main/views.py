@@ -6,6 +6,9 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+
 
 from account.models import User
 from .filters import *
@@ -17,6 +20,12 @@ class ChildrenViewSet(ModelViewSet):
     queryset = Children.objects.all()
     filterset_class = Children_Filter
     serializer_class = Children_Serializers
+
+    # @method_decorator(cache_page(60 * 15))
+    # def list(self,request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
+
+
     def get_permissions(self):
         if self.action in ['retrieve', 'list', 'search']:
             # если это запрос на листинг или детализацию
@@ -45,6 +54,12 @@ class Children_House_ViewSet(ModelViewSet):
     queryset = ChildrenHouse.objects.all()
     filterset_class = Children_House_Filter
     serializer_class = Children_House_Serializer
+
+    # @method_decorator(cache_page(60 * 15))
+    # def list(self,request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
+
+
     def get_permissions(self):
         if self.action in ['retrieve','list','search']:
             return[]
@@ -72,6 +87,11 @@ class PetsViewSet(ModelViewSet):
     queryset = Pets.objects.all()
     filterset_class = Pets_Filter
     serializer_class = Pets_Serilaizers
+
+    # @method_decorator(cache_page(60 * 15))
+    # def list(self,request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
+
     def get_permissions(self):
         if self.action in ['retrieve', 'list', 'search']:
             # если это запрос на листинг или детализацию
@@ -99,7 +119,12 @@ class PetsViewSet(ModelViewSet):
 class Narsing_House_ViewSet(ModelViewSet):
     queryset = NarsingHouse.objects.all()
     filterset_class = Narsing_HouseFilter
-    serializer_class =Narsing_House_Serializers 
+    serializer_class =Narsing_House_Serializers
+
+    # @method_decorator(cache_page(60 * 15))
+    # def list(self,request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
+ 
     def get_permissions(self):
         if self.action in ['retrieve', 'list', 'search']:
             # если это запрос на листинг или детализацию
@@ -128,6 +153,11 @@ class HomelessViewSet(ModelViewSet):
     queryset = Homeless.objects.all()
     filterset_class = Homeless_Filter
     serializer_class =Homeless_Serializers 
+
+    # @method_decorator(cache_page(60 * 15))
+    # def list(self,request, *args, **kwargs):
+    #     return super().list(request, *args, **kwargs)
+
     def get_permissions(self):
         if self.action in ['retrieve', 'list', 'search']:
             # если это запрос на листинг или детализацию
